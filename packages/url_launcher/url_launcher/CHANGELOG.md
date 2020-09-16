@@ -1,3 +1,7 @@
+## 5.6.1
+
+* Add API documentation explaining the [canLaunch] method returns `false` if package visibility (Android API 30) is not managed correctly.
+
 ## 5.6.0
 
 * Support Windows by default.
