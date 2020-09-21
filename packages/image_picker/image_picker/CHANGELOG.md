@@ -1,3 +1,7 @@
+## 0.6.7+10
+
+* Update documentation of `getImage()` about HEIC images.
+
 ## 0.6.7+9
 
 * Updated the ExifInterface to the AndroidX version to support more file formats;
