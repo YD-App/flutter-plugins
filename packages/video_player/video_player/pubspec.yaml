@@ -24,7 +24,7 @@ dependencies:
     git:
       url: https://github.com/kim-company/flutter-plugins.git
       path: packages/video_player/video_player_platform_interface
-      ref: b7634d69287127ec7dfa1ff55bb86cb7a807e2a6
+      ref: fix-aspect-ratio
   # The design on https://flutter.dev/go/federated-plugins was to leave
   # this constraint as "any". We cannot do it right now as it fails pub publish
   # validation, so we set a ^ constraint.
