@@ -36,6 +36,7 @@ class VideoPlayerValue {
     this.isPlaying = false,
     this.isLooping = false,
     this.isBuffering = false,
+    this.pixelWidthHeightRatio = 1.0,
     this.volume = 1.0,
     this.errorDescription,
   });
@@ -106,11 +107,7 @@ class VideoPlayerValue {
       return 1.0;
     }
 
-    if (pixelWidthHeightRatio != null) {
-      return pixelWidthHeightRatio * (size.width / size.height);
-    }
-
-    final double aspectRatio = size.width / size.height;
+    final double aspectRatio = pixelWidthHeightRatio * (size.width / size.height);
     if (aspectRatio <= 0) {
       return 1.0;
     }
