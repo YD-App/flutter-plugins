@@ -214,6 +214,7 @@ class VideoEvent {
     @required this.eventType,
     this.duration,
     this.size,
+    this.pixelWidthHeightRatio,
     this.buffered,
   });
 
@@ -230,6 +231,8 @@ class VideoEvent {
   /// Only used if [eventType] is [VideoEventType.initialized].
   final Size size;
 
+  final double pixelWidthHeightRatio;
+
   /// Buffered parts of the video.
   ///
   /// Only used if [eventType] is [VideoEventType.bufferingUpdate].
@@ -243,6 +246,7 @@ class VideoEvent {
             eventType == other.eventType &&
             duration == other.duration &&
             size == other.size &&
+            pixelWidthHeightRatio == other.pixelWidthHeightRatio &&
             listEquals(buffered, other.buffered);
   }
 
@@ -251,6 +255,7 @@ class VideoEvent {
       eventType.hashCode ^
       duration.hashCode ^
       size.hashCode ^
+      pixelWidthHeightRatio.hashCode ^
       buffered.hashCode;
 }
 
