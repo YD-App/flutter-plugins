@@ -260,6 +260,7 @@ final class VideoPlayer {
         }
         event.put("width", width);
         event.put("height", height);
+        event.put("pixelWidthHeightRatio", videoFormat.pixelWidthHeightRatio);
       }
       eventSink.success(event);
     }

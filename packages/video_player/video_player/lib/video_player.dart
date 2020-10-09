@@ -87,6 +87,11 @@ class VideoPlayerValue {
   /// Is null when [initialized] is false.
   final Size size;
 
+  /// The [pixelWidthHeightRatio] of the current loaded video.
+  ///
+  /// Is 0.0 when [initialized] is false and on iOS.
+  final double pixelWidthHeightRatio;
+
   /// Indicates whether or not the video has been loaded and is ready to play.
   bool get initialized => duration != null;
 
@@ -100,6 +105,11 @@ class VideoPlayerValue {
     if (size == null || size.width == 0 || size.height == 0) {
       return 1.0;
     }
+
+    if (pixelWidthHeightRatio != null) {
+      return pixelWidthHeightRatio * (size.width / size.height);
+    }
+
     final double aspectRatio = size.width / size.height;
     if (aspectRatio <= 0) {
       return 1.0;
@@ -119,6 +129,7 @@ class VideoPlayerValue {
     bool isLooping,
     bool isBuffering,
     double volume,
+    double pixelWidthHeightRatio,
     String errorDescription,
   }) {
     return VideoPlayerValue(
@@ -131,6 +142,7 @@ class VideoPlayerValue {
       isLooping: isLooping ?? this.isLooping,
       isBuffering: isBuffering ?? this.isBuffering,
       volume: volume ?? this.volume,
+      pixelWidthHeightRatio: pixelWidthHeightRatio ?? this.pixelWidthHeightRatio,
       errorDescription: errorDescription ?? this.errorDescription,
     );
   }
@@ -145,8 +157,9 @@ class VideoPlayerValue {
         'buffered: [${buffered.join(', ')}], '
         'isPlaying: $isPlaying, '
         'isLooping: $isLooping, '
-        'isBuffering: $isBuffering'
+        'isBuffering: $isBuffering, '
         'volume: $volume, '
+        'pixelWidthHeightRatio: $pixelWidthHeightRatio, '
         'errorDescription: $errorDescription)';
   }
 }
@@ -286,6 +299,7 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
           value = value.copyWith(
             duration: event.duration,
             size: event.size,
+            pixelWidthHeightRatio: event.pixelWidthHeightRatio,
           );
           initializingCompleter.complete(null);
           _applyLooping();
